@@ -7,7 +7,8 @@ const MemberSchema = new Schema({
     type: Number,
     unique: true,
   },
-  name: String,
+  firstName: String,
+  lastName: String,
   projectScore: [{ type: mongoose.Schema.Types.ObjectId, ref: "ProjectScore" }],
   sessionAttend: [
     { type: mongoose.Schema.Types.ObjectId, ref: "SessionAttendance" },
