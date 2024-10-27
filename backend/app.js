@@ -50,18 +50,37 @@ app.post("/", async (req, res) => {
   }
 });
 
-// useEffect() fetches user grade by ID
-app.get("/grades", (req, res) => {
+// useEffect() fetches all grades by member ID to populate UI.
+app.get("/grades", async (req, res) => {
   try {
     if (!req.cookies.userData) {
-      // next version: direct to user log in or pop up and then back to log in
       return res.status(400).send("User not found");
+      // frontend receives this and then sends a pop up, then direct back to user log in
     }
     const appID = req.cookies.userData.id;
     const appName = req.cookies.userData.name;
-    // next version: fetching data
+    const applicant = await Member.findOne({
+      $and: [{ id: appID }, { firstName: appName }],
+    });
 
-    res.status(200).json({ this: "placeholder" });
+    let records = await ProjectScore.find(
+      { member: applicant._id },
+      { member: 0, _id: 0, __v: 0 }
+    ).populate({
+      path: "project",
+      select: "-__v -_id",
+    });
+    let sessionRecord = await SessionAttendance.find(
+      { member: applicant._id },
+      { member: 0, _id: 0, __v: 0 }
+    ).populate({
+      path: "session",
+      select: "-_id -__v",
+    });
+    records.push(sessionRecord);
+
+    records = JSON.stringify(records);
+    res.status(200).json(records);
   } catch (err) {
     res.status(500).send(`Something went wrong... Error: ${err}`);
   }
@@ -78,27 +97,41 @@ app.put("/grades", async (req, res) => {
   try {
     const requireType = req.body.requirement;
     const appID = req.body.memberID;
-    const member = await Member.findOne({ id: appID }).then((person) => {
-      return person._id;
-    });
+    const member = await Member.findOne({ id: appID });
+
+    if (!member) {
+      return res.status(400).send("Member doesn't exist");
+    }
+    console.log("found member");
 
     if (requireType == "Project") {
+      console.log("updating project data");
       const project = await Project.findOne({ id: req.body.projectID }).then(
         (p) => {
+          if (!p) {
+            return null;
+          }
           return p._id;
         }
       );
 
+      if (!project) {
+        return res.status(400).send("Project doesn't exist");
+      }
+
       // check if score record exists
       let scoreData = await ProjectScore.findOne({
-        $and: [{ member: member }, { project: project }],
+        $and: [{ member: member._id }, { project: project }],
       });
 
       // create new if record doesn't exist
       if (!scoreData) {
+        console.log("No score data exists, creating new record");
         scoreData = new ProjectScore();
-        scoreData.member = member;
+        scoreData.member = member._id;
         scoreData.project = project;
+        member.projectScore.push(scoreData._id);
+        await member.save();
       }
 
       // update score & late
@@ -107,23 +140,26 @@ app.put("/grades", async (req, res) => {
       await scoreData.save();
       res.status(200).send("successfully updated project record");
     } else if (requireType == "Session") {
+      console.log("updating session data");
       // check if record exists
       let scoreData = await SessionAttendance.findOne({
-        $and: [{ member: member }, { session: "671872b5b9aa43875197833d" }],
+        $and: [{ member: member._id }, { session: "671872b5b9aa43875197833d" }],
       });
 
       // if not create new
       if (!scoreData) {
+        console.log("no session attendance exist, creating new record");
         scoreData = new SessionAttendance();
-        scoreData.member = member;
+        scoreData.member = member._id;
         scoreData.session = "671872b5b9aa43875197833d";
+        member.sessionAttend.push(scoreData._id);
+        await member.save();
       }
 
       // update attendance
       scoreData.attendance = req.body.attendance;
       await scoreData.save();
       res.status(200).send("successfully updated session record");
-      // NOT COMPLETED. UPDATE MEMBER DATA FIELDS: PROJECTSCORE & SESSIONATTENDANCE
     } else {
       res.status(400).send("Cannot find requirement type");
     }
@@ -133,7 +169,16 @@ app.put("/grades", async (req, res) => {
 });
 
 // useEffect() fetches setting of all projects and sessions to populate UI
-app.get("/settings", (req, res) => {});
+app.get("/settings", async (req, res) => {
+  try {
+    let settingData = await Project.find({}, { _id: 0, __v: 0 });
+    settingData.push(await Session.find({}, { _id: 0, __v: 0 }));
+    settingData = JSON.stringify(settingData);
+    res.status(200).json(settingData);
+  } catch (err) {
+    res.status(500).send(`Something went wrong... Error: ${err}`);
+  }
+});
 
 // update button triggers this. Updates project setting
 app.put("/projects", async (req, res) => {
