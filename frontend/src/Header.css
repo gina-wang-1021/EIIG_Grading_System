@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#headerDiv {
+  background-color: #1b3055;
+  height: 25%;
+  padding: 10px 0;
+}
+
+#headerImg {
+  display: block;
+  margin: auto;
+  height: 100%;
+}

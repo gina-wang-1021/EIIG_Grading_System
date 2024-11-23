@@ -1,9 +1,10 @@
 import logo from "./assets/EIIG_logo.png";
+import "./Header.css";
 
 function Header() {
   return (
-    <div>
-      <img src={logo} alt="EIIG logo" />
+    <div id="headerDiv">
+      <img id="headerImg" src={logo} alt="EIIG logo" />
     </div>
   );
 }

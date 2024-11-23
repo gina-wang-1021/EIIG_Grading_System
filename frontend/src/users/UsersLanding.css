@@ -1,0 +1,129 @@
+/* 
+Blue #004b83
+Gray #b2b2b2
+Yellow #ffde73
+
+<weight>: Use a value from 400 to 700
+<uniquifier>: Use a unique and descriptive class name
+*/
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.cabin-font {
+  font-family: "Cabin", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #1b3055;
+  overflow-x: hidden;
+}
+
+#landingRoot {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.mainCard {
+  max-width: 40%;
+  margin: auto;
+
+  background-color: #b2b2b2;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  display: block;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  margin-top: 1%;
+  margin-bottom: 5%;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+form {
+  width: 80%;
+}
+
+.grid-inputs {
+  display: grid;
+  grid-template-columns: 30% 65%;
+  column-gap: 5%;
+  row-gap: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+input {
+  border: none;
+  width: 85%;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+  color: #000000;
+}
+
+label {
+  text-align: end;
+}
+
+p {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+#logIn {
+  display: block;
+  box-sizing: border-box;
+  width: 80%;
+  padding: 0.25rem;
+  font-size: 1rem;
+  margin: auto;
+}
+
+#logIn:hover,
+#logIn:focus {
+  box-shadow: 0 0 0 2px #ffde73;
+}
+
+.error {
+  box-shadow: 0 0 0 1px #b00000;
+  color: #b00000;
+}
+
+.errorMessage {
+  position: absolute;
+  color: #b00000;
+  margin: 0;
+  font-size: 0.5rem;
+  text-align: left;
+}

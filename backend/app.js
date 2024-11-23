@@ -1,5 +1,5 @@
 import express from "express";
-import mongoose from "mongoose";
+import cors from "cors";
 import connection from "./db.js";
 import Member from "./model/Member.js";
 import Project from "./model/Project.js";
@@ -10,6 +10,12 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = 3000;
+
+const corsOptions = {
+  origin: "http://localhost:5173", // allow only this origin
+};
+
+app.use(cors(corsOptions));
 
 // set middleware and db connection
 app.use(express.json());
@@ -30,8 +36,8 @@ app.get("/", async (req, res) => {
 // button triggers user log in
 app.post("/", async (req, res) => {
   try {
-    const appName = req.body.firstName;
-    const appID = Number(req.body.eiigid);
+    const appName = req.body.nameValue;
+    const appID = Number(req.body.idValue);
 
     const idCheck = await Member.findOne({ id: appID });
 
@@ -41,12 +47,12 @@ app.post("/", async (req, res) => {
         { name: String(appName), id: appID },
         { maxAge: 100000 }
       );
-      res.status(200).send("ok");
+      res.status(200).json({ message: "ok" });
     } else {
-      res.status(400).send("user not found");
+      res.status(400).json({ message: "user not found" });
     }
   } catch (err) {
-    res.status(500).send(`Something went wrong... Error: ${err}`);
+    res.status(500).json({ message: `Something went wrong... Error: ${err}` });
   }
 });
 
@@ -89,7 +95,7 @@ app.get("/grades", async (req, res) => {
 // log out button triggers this. user log out.
 app.get("/grades/logout", (req, res) => {
   res.clearCookie("userData");
-  res.send("user logout successfully");
+  res.json({ message: "logged out successfully" });
 });
 
 // after data review, final update button triggers this. Updates users score or attendance.
