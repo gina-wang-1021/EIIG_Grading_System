@@ -1,0 +1,10 @@
+#allCards {
+  margin: 2% 5%;
+  padding: 2%;
+  border: solid 5px #004b8e;
+}
+
+#allCards > p {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}

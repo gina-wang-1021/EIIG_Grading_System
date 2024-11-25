@@ -1,0 +1,49 @@
+#sumCompAll {
+  margin: 2% 5%;
+  border: solid 5px #ffde73;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#progressAll {
+  margin-right: 3%;
+}
+
+#progressText {
+  font-size: 3rem;
+  font-weight: 1000;
+  margin: 0;
+  color: #004b8e;
+}
+
+#progressBar {
+  border-radius: 0%;
+  border: solid 1px #004b8e;
+}
+
+#progressBar::-webkit-progress-value {
+  background-color: #004b8e;
+}
+
+#progressBar::-webkit-progress-bar {
+  background-color: #ffffff;
+}
+
+#summaryAll {
+  padding: 3% 0;
+}
+
+.summaryText {
+  font-size: 1.5rem;
+  text-align: left;
+  margin: 0;
+}
+
+#text1 {
+  margin-bottom: 1rem;
+}
+
+#summaryComment {
+  margin: 0;
+}

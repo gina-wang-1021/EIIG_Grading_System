@@ -6,13 +6,13 @@ function LogoutBtn() {
   const logout = async () => {
     await fetch("http://localhost:3000/grades/logout", {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      credentials: "include",
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
-      .then(navigate("/"))
+      .then((data) => {
+        console.log(data);
+        navigate("/");
+      })
       .catch((error) => console.error("Error:", error));
   };
   return (

@@ -50,6 +50,7 @@ function UsersLanding() {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify({ nameValue, idValue }),
         });
 

@@ -1,7 +1,23 @@
 #checkGradeRoot {
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
 }
 
 .login {
   background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2% 5%;
+}
+
+.loginText {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.lastComment {
+  font-size: 1.5rem;
+  margin: 2rem 0;
 }

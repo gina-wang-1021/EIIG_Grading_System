@@ -13,6 +13,7 @@ const PORT = 3000;
 
 const corsOptions = {
   origin: "http://localhost:5173", // allow only this origin
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -45,7 +46,13 @@ app.post("/", async (req, res) => {
       res.cookie(
         "userData",
         { name: String(appName), id: appID },
-        { maxAge: 100000 }
+        { maxAge: 100000 },
+        {
+          httpOnly: true,
+          sameSite: "None",
+          secure: false,
+          path: "/",
+        }
       );
       res.status(200).json({ message: "ok" });
     } else {
@@ -56,11 +63,25 @@ app.post("/", async (req, res) => {
   }
 });
 
+// check user authorization to prevent unauthorized access
+app.get("/authorization", async (req, res) => {
+  try {
+    const userData = req.cookies.userData;
+    console.log(userData);
+    if (!userData) {
+      return res.status(401).json({ auth: false });
+    }
+    res.status(200).json({ auth: true });
+  } catch (err) {
+    res.status(500).json({ auth: "Something went wrong" });
+  }
+});
+
 // useEffect() fetches all grades by member ID to populate UI.
 app.get("/grades", async (req, res) => {
   try {
     if (!req.cookies.userData) {
-      return res.status(400).send("User not found");
+      return res.status(400).json({ data: "user not logged in" });
       // frontend receives this and then sends a pop up, then direct back to user log in
     }
     const appID = req.cookies.userData.id;
@@ -69,20 +90,26 @@ app.get("/grades", async (req, res) => {
       $and: [{ id: appID }, { firstName: appName }],
     });
 
-    let records = await ProjectScore.find(
+    let projectRecord = await ProjectScore.find(
       { member: applicant._id },
       { member: 0, _id: 0, __v: 0 }
-    ).populate({
-      path: "project",
-      select: "-__v -_id",
-    });
+    )
+      .populate({
+        path: "project",
+        select: "-__v -_id",
+      })
+      .sort({ project: 1 });
     let sessionRecord = await SessionAttendance.find(
       { member: applicant._id },
       { member: 0, _id: 0, __v: 0 }
-    ).populate({
-      path: "session",
-      select: "-_id -__v",
-    });
+    )
+      .populate({
+        path: "session",
+        select: "-_id -__v",
+      })
+      .sort({ project: 1 });
+    let records = [];
+    records.push(projectRecord);
     records.push(sessionRecord);
 
     records = JSON.stringify(records);
@@ -92,9 +119,29 @@ app.get("/grades", async (req, res) => {
   }
 });
 
+app.get("/grades/macro", async (req, res) => {
+  try {
+    let totalCount = [];
+    totalCount[0] = await Project.countDocuments();
+    totalCount[1] = await Session.countDocuments();
+    return res.status(200).json({
+      projectCount: totalCount[0],
+      sessionCount: totalCount[1],
+    });
+  } catch (err) {
+    res.status(500).send(`Something went wrong... Error: ${err}`);
+  }
+});
+
 // log out button triggers this. user log out.
 app.get("/grades/logout", (req, res) => {
-  res.clearCookie("userData");
+  console.log("Clearing cookie:", req.cookies.userData);
+  res.clearCookie("userData", {
+    httpOnly: true,
+    sameSite: "None",
+    secure: false,
+    path: "/",
+  });
   res.json({ message: "logged out successfully" });
 });
 
@@ -177,10 +224,17 @@ app.put("/grades", async (req, res) => {
 // useEffect() fetches setting of all projects and sessions to populate UI
 app.get("/settings", async (req, res) => {
   try {
-    let settingData = await Project.find({}, { _id: 0, __v: 0 });
-    settingData.push(await Session.find({}, { _id: 0, __v: 0 }));
-    settingData = JSON.stringify(settingData);
-    res.status(200).json(settingData);
+    let allSetting = [];
+    let settingData = await Project.find({}, { _id: 0, __v: 0 }).sort({
+      id: 1,
+    });
+    let settingData2 = await Session.find({}, { _id: 0, __v: 0 }).sort({
+      id: 1,
+    });
+    allSetting.push(settingData);
+    allSetting.push(settingData2);
+    allSetting = JSON.stringify(allSetting);
+    res.status(200).json(allSetting);
   } catch (err) {
     res.status(500).send(`Something went wrong... Error: ${err}`);
   }
