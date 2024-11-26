@@ -103,7 +103,10 @@ function UsersCheckGrade() {
           <p className="cabin-font loginText">You are logged in as Gina</p>
           <LogoutBtn />
         </div>
-        <SummaryComp></SummaryComp>
+        <SummaryComp
+          userData={userData}
+          settingData={settingData}
+        ></SummaryComp>
         <CardList userData={userData} settingData={settingData}></CardList>
         <p className="cabin-font lastComment">🎉 Good Luck with Everything! </p>
       </div>
