@@ -1,4 +1,4 @@
-#sessionCard {
+.sessionCard {
   background-color: #d9d9d9;
   display: flex;
   align-items: center;
@@ -7,13 +7,24 @@
   margin-bottom: 1%;
 }
 
-#sessionCard > img {
+.sessionCard > img {
   max-width: 2rem;
   margin: 0;
 }
 
-#sessionCard > p {
+.sessionCard > p {
   display: block;
   font-size: 1.5rem;
   margin: 0;
+}
+
+.sesLock {
+  max-width: 2rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.lockedCard {
+  background-color: #c2c2c2;
+  color: #66666d;
 }

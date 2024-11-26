@@ -24,7 +24,7 @@ function CardList({ userData, settingData }) {
       !sessionSet.length ||
       !total.length
     ) {
-      return <div>Loading...</div>;
+      return <div className="cabin-font loading">Loading...</div>;
     }
     const projects = total[0];
     const sessions = total[1];
@@ -32,77 +32,41 @@ function CardList({ userData, settingData }) {
     let sessionNum = 0;
     let finalRender = [];
 
+    // improve pulling and populating data fields
     for (let i = 0; i < projects; i++) {
-      // improve with condition ? true : false
-      if (projectSet[i].status === true) {
-        if (projectSet[i].id === projectData[projectNum].project.id) {
-          // load project id, late status, score and total score
-          finalRender.push(
-            <ProjectCard
-              key={i}
-              projectID={projectSet[i]}
-              score={projectData[projectNum]}
-            ></ProjectCard>
-          );
-          projectNum += 1;
-        } else {
-          // load project id, put dash as record
-          finalRender.push(
-            <ProjectCard
-              key={i}
-              projectID={projectSet[i]}
-              score={"no record"}
-            ></ProjectCard>
-          );
-        }
-      } else {
-        if (projectSet[i].id === projectData[projectNum].project.id) {
-          projectNum += 1;
-        }
-        // load project id, set icon and style
-        finalRender.push(
-          <ProjectCard
-            key={i}
-            projectID={projectSet[i]}
-            score={"not open"}
-          ></ProjectCard>
-        );
+      const scoreExist =
+        projectSet[i].status === true &&
+        projectSet[i].id === projectData[projectNum].project.id
+          ? true
+          : false;
+      finalRender.push(
+        <ProjectCard
+          key={i}
+          project={projectSet[i]}
+          score={scoreExist ? projectData[projectNum] : null}
+        ></ProjectCard>
+      );
+      if (scoreExist) {
+        projectNum += 1;
       }
     }
+
+    // improve pulling and populating data fields
     for (let i = 0; i < sessions; i++) {
-      if (sessionSet[i].status === true) {
-        if (sessionSet[i].id === sessionData[sessionNum].session.id) {
-          // load session id and attendance
-          finalRender.push(
-            <SessionCard
-              key={"ses"}
-              sessionID={sessionSet[i]}
-              attend={sessionData[sessionNum]}
-            ></SessionCard>
-          );
-          sessionNum += 1;
-        } else {
-          // load session id, put dash as record
-          finalRender.push(
-            <SessionCard
-              key={"ses"}
-              sessionID={sessionSet[i]}
-              attend={"no record"}
-            ></SessionCard>
-          );
-        }
-      } else {
-        if (sessionSet[i].id === sessionData[sessionNum].session.id) {
-          sessionNum += 1;
-          // load session id, set icon and style
-          finalRender.push(
-            <SessionCard
-              key={"ses"}
-              sessionID={sessionSet[i]}
-              attend={"not open"}
-            ></SessionCard>
-          );
-        }
+      const scoreExist =
+        sessionSet[i].status === true &&
+        sessionData[sessionNum].attendance === ("excused" || "yes")
+          ? true
+          : false;
+      finalRender.push(
+        <SessionCard
+          key={"ses"}
+          session={sessionSet[i]}
+          attend={scoreExist ? sessionData[sessionNum] : null}
+        ></SessionCard>
+      );
+      if (scoreExist) {
+        sessionNum += 1;
       }
     }
     return finalRender;

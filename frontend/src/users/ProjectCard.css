@@ -1,4 +1,4 @@
-#projectCard {
+.projectCard {
   background-color: #d9d9d9;
   display: flex;
   align-items: center;
@@ -7,11 +7,22 @@
   margin-bottom: 1%;
 }
 
-#projectCard > p {
+.projectCard > p {
   font-size: 1.5rem;
   margin: 0;
 }
 
 .late {
   color: #990000;
+}
+
+.projectLock {
+  max-width: 2rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.lockedCard {
+  background-color: #c2c2c2;
+  color: #66666d;
 }
