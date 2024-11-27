@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import SessionCard from "./SessionCard";
-import "./CardList.css";
+import "../../styles/CardList.css";
 import { useState, useEffect } from "react";
 
 function CardList({ userData, settingData }) {

@@ -1,8 +1,8 @@
-import Header from "../Header";
-import LogoutBtn from "./LogoutBtn";
-import SummaryComp from "./SummaryComp";
-import CardList from "./CardList";
-import "./UsersCheckGrade.css";
+import Header from "../components/Header";
+import LogoutBtn from "../components/users/LogoutBtn";
+import SummaryComp from "../components/users/SummaryComp";
+import CardList from "../components/users/CardList";
+import "../styles/UsersCheckGrade.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import "./LogoutBtn.css";
+import "../../styles/LogoutBtn.css";
 import { useNavigate } from "react-router-dom";
 
 function LogoutBtn() {

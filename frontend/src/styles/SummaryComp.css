@@ -1,5 +1,6 @@
 #sumCompAll {
   margin: 2% 5%;
+  padding: 2%;
   border: solid 5px #ffde73;
   display: flex;
   align-items: center;
@@ -31,7 +32,7 @@
 }
 
 #summaryAll {
-  padding: 3% 0;
+  min-width: 35%;
 }
 
 .summaryText {
@@ -44,6 +45,11 @@
   margin-bottom: 1rem;
 }
 
-#summaryComment {
+.summaryComment {
   margin: 0;
+  text-align: left;
+}
+
+#summaryLoading {
+  font-size: 1.5rem;
 }

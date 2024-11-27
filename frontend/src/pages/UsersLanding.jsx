@@ -1,7 +1,7 @@
 import logo from "../assets/EIIG_logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./UsersLanding.css";
+import "../styles/UsersLanding.css";
 
 function UsersLanding() {
   const [firstName, setFirstName] = useState("");
@@ -26,10 +26,6 @@ function UsersLanding() {
       errorIdMes = "ID is invalid. Input can only take numbers";
       setErrorId(errorIdMes);
     }
-
-    console.log(errorNameMes);
-    console.log(errorIdMes);
-
     if (errorNameMes || errorIdMes) {
       return false;
     }
@@ -55,8 +51,6 @@ function UsersLanding() {
         });
 
         if (response.ok) {
-          const data = await response.json();
-          console.log(data);
           navigate("/checkGrade");
         } else if (response.status === 400) {
           console.log(await response.json());

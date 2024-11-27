@@ -1,7 +1,7 @@
-import "./SessionCard.css";
-import check from "../assets/check.png";
-import cross from "../assets/cross.png";
-import lock from "../assets/lock.png";
+import "../../styles/SessionCard.css";
+import check from "../../assets/check.png";
+import cross from "../../assets/cross.png";
+import lock from "../../assets/lock.png";
 
 function SessionCard({ session, attend }) {
   const sessionName = session.name;

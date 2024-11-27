@@ -1,6 +1,6 @@
 import gradings from "../assets/grading.jpg";
 import settings from "../assets/setting.jpg";
-import Header from "../Header";
+import Header from "../components/Header";
 
 function AdminLanding() {
   return (

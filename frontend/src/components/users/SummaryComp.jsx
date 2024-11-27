@@ -1,11 +1,11 @@
-import "./SummaryComp.css";
+import "../../styles/SummaryComp.css";
 import { useEffect, useState } from "react";
 
 function SummaryComp({ userData, settingData }) {
-  const [total, setTotal] = useState([]);
-  const [completed, setCompleted] = useState([]);
-  const [lateCount, setLateCount] = useState([]);
-  const [ratio, setRatio] = useState(0);
+  const [total, setTotal] = useState(null);
+  const [completed, setCompleted] = useState(null);
+  const [lateCount, setLateCount] = useState(null);
+  const [ratio, setRatio] = useState(null);
 
   const totalNum = async () => {
     let data = await fetch("http://localhost:3000/grades/macro", {
@@ -26,29 +26,29 @@ function SummaryComp({ userData, settingData }) {
       return;
     }
 
-    const countTotals = async () => {
+    const calculateData = async () => {
       const totals = await totalNum();
       setTotal(totals[0]);
-    };
-    const lateTotals = () => {
-      let count = 0;
-      for (let i = 0; i < completed; i++) {
+
+      const completedCount = userData[0].length;
+      setCompleted(completedCount);
+
+      let lateSubmissionCount = 0;
+      for (let i = 0; i < completedCount; i++) {
         if (userData[0][i].late) {
-          count += 1;
+          lateSubmissionCount += 1;
         }
       }
-      setLateCount(count);
+      setLateCount(lateSubmissionCount);
     };
-    setCompleted(userData[0].length);
-    countTotals();
-    lateTotals();
+
+    calculateData();
   }, [userData, settingData]);
 
   useEffect(() => {
     const newRatio = Math.ceil((completed / total) * 100);
     setRatio(newRatio);
-    console.log(ratio);
-  }, [completed, total]);
+  }, [total]);
 
   return (
     <div id="sumCompAll">
@@ -70,20 +70,26 @@ function SummaryComp({ userData, settingData }) {
         )}
       </div>
       <div id="summaryAll">
-        {!completed || !total ? (
-          <p className="cabin-font summaryText text1">Loading...</p>
+        {!completed || !total || !lateCount ? (
+          <>
+            <p className="cabin-font summaryText" id="summaryLoading">
+              Loading...
+            </p>
+          </>
         ) : (
-          <p className=" cabin-font summaryText text1">
-            {completed} out of {total} requirements completed
-          </p>
+          <>
+            <p className=" cabin-font summaryText text1">
+              {completed} out of {total} requirements completed
+            </p>
+            <p className=" cabin-font summaryText">
+              {lateCount} out of 2 late submissions used
+            </p>
+            <p className="cabin-font summaryComment">
+              (Placement into EIIG will not be guaranteed if more than 2 late
+              submissions submitted)
+            </p>
+          </>
         )}
-        <p className=" cabin-font summaryText">
-          {lateCount} out of 2 late submissions used
-        </p>
-        <p className="cabin-font" id="summaryComment">
-          (Placement into EIIG will not be guaranteed if more than 2 late
-          submissions submitted)
-        </p>
       </div>
     </div>
   );

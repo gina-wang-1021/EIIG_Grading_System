@@ -1,5 +1,5 @@
-import "./ProjectCard.css";
-import lock from "../assets/lock.png";
+import "../../styles/ProjectCard.css";
+import lock from "../../assets/lock.png";
 
 function ProjectCard({ project, score }) {
   const projectID = project.id;

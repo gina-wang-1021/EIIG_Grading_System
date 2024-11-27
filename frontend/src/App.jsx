@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import UsersLanding from "./users/UsersLanding";
-import AdminLanding from "./admin/AdminLanding";
-import UsersCheckGrade from "./users/UsersCheckGrade";
+import UsersLanding from "./pages/UsersLanding";
+import AdminLanding from "./pages/AdminLanding";
+import UsersCheckGrade from "./pages/UsersCheckGrade";
 
 const router = createBrowserRouter([
   {

@@ -37,19 +37,19 @@ app.get("/", async (req, res) => {
 // button triggers user log in
 app.post("/", async (req, res) => {
   try {
-    const appName = req.body.nameValue;
+    const appName = req.body.nameValue.toLowerCase();
     const appID = Number(req.body.idValue);
 
-    const idCheck = await Member.findOne({ id: appID });
+    let idCheck = await Member.findOne({ id: appID });
 
-    if (idCheck && idCheck.firstName == appName) {
+    if (idCheck && idCheck.firstName === appName) {
       res.cookie(
         "userData",
-        { name: String(appName), id: appID },
-        { maxAge: 100000 },
+        { name: appName, id: appID },
         {
+          maxAge: 100000,
           httpOnly: true,
-          sameSite: "None",
+          sameSite: "Lax",
           secure: false,
           path: "/",
         }
@@ -67,7 +67,6 @@ app.post("/", async (req, res) => {
 app.get("/authorization", async (req, res) => {
   try {
     const userData = req.cookies.userData;
-    console.log(userData);
     if (!userData) {
       return res.status(401).json({ auth: false });
     }
@@ -138,7 +137,7 @@ app.get("/grades/logout", (req, res) => {
   console.log("Clearing cookie:", req.cookies.userData);
   res.clearCookie("userData", {
     httpOnly: true,
-    sameSite: "None",
+    sameSite: "Lax",
     secure: false,
     path: "/",
   });

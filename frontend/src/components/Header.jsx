@@ -1,5 +1,5 @@
-import logo from "./assets/EIIG_logo.png";
-import "./Header.css";
+import logo from "../assets/EIIG_logo.png";
+import "../styles/Header.css";
 
 function Header() {
   return (
