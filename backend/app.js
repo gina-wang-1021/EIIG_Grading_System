@@ -70,7 +70,8 @@ app.get("/authorization", async (req, res) => {
     if (!userData) {
       return res.status(401).json({ auth: false });
     }
-    res.status(200).json({ auth: true });
+    const userName = userData.name;
+    res.status(200).json({ auth: true, name: userName });
   } catch (err) {
     res.status(500).json({ auth: "Something went wrong" });
   }

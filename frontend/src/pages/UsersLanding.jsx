@@ -5,28 +5,22 @@ import "../styles/UsersLanding.css";
 
 function UsersLanding() {
   const [firstName, setFirstName] = useState("");
-  const [idValue, setIdValue] = useState("");
+  const [numValue, setNumValue] = useState("");
   const [errorName, setErrorName] = useState("");
   const [errorId, setErrorId] = useState("");
   const [errorValid, setErrorValid] = useState("");
   const navigate = useNavigate();
 
-  let errorNameMes = "";
-  let errorIdMes = "";
-
   const validateInput = (nameValue, idValue) => {
     if (!/^[A-Za-z]+$/.test(nameValue)) {
       console.log("setting error name");
-      errorNameMes = "First name is invalid. Input can only take letters";
-      setErrorName(errorNameMes);
+      setErrorName("First name is invalid. Input can only take letters");
+      return false;
     }
 
     if (!/^[0-9]+$/.test(idValue)) {
       console.log("setting error id");
-      errorIdMes = "ID is invalid. Input can only take numbers";
-      setErrorId(errorIdMes);
-    }
-    if (errorNameMes || errorIdMes) {
+      setErrorId("ID is invalid. Input can only take numbers");
       return false;
     }
 
@@ -39,7 +33,7 @@ function UsersLanding() {
     const nameValue = event.target.first_name.value;
     const idValue = event.target.id.value;
     if (validateInput(nameValue, idValue)) {
-      console.log("passed validation, submitting data");
+      console.log("data valid");
       try {
         const response = await fetch("http://localhost:3000/", {
           method: "POST",
@@ -52,14 +46,14 @@ function UsersLanding() {
 
         if (response.ok) {
           navigate("/checkGrade");
-        } else if (response.status === 400) {
+        } else if (response.status === 400 || 500) {
           console.log(await response.json());
           setErrorValid("User not found. Either First Name or ID is incorrect");
-          setIdValue("");
+          setNumValue("");
         }
       } catch (error) {
         console.log(error);
-        // create pop out with error message
+        // popup
       }
     } else {
       console.log("data was invalid");
@@ -106,9 +100,9 @@ function UsersLanding() {
                     errorId || errorValid ? "error" : ""
                   }`}
                   name="id"
-                  value={idValue}
+                  value={numValue}
                   onChange={(e) => {
-                    setIdValue(e.target.value);
+                    setNumValue(e.target.value);
                   }}
                   onFocus={() => {
                     if (errorId) setErrorId("");

@@ -1,4 +1,4 @@
-import gradings from "../assets/grading.jpg";
+import grading from "../assets/grading.jpg";
 import settings from "../assets/setting.jpg";
 import Header from "../components/Header";
 
@@ -11,7 +11,7 @@ function AdminLanding() {
         <text>Project Settings</text>
       </button>
       <button>
-        <img src={gradings} alt="gradings" />
+        <img src={grading} alt="grading" />
         <text>Update Scores</text>
       </button>
     </>

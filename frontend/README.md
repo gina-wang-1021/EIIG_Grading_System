@@ -1,8 +1,5 @@
-# React + Vite
+During 2023 fall, Emory Impact Investing Group (EIIG) implemented the Junior Analyst Experience program, which later evolved into the Early Analyst Experience program. The program included several projects for members to complete and gain EIIG-related experience, providing educational opportunities for over 100 members each cycle.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+However, manually distributing grades for each member for each project required significant time commitment for the managers. Thus, this project was created.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a full-stack web app built with the MERN stack, allowing EAE members to check all their grades and project status after logging into the portal. Managers can also set grades and change project settings via a separate endpoint.

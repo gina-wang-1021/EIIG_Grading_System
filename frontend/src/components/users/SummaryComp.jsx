@@ -16,6 +16,22 @@ function SummaryComp({ userData, settingData }) {
     return [data.projectCount, data.sessionCount];
   };
 
+  const calculateData = async () => {
+    const totals = await totalNum();
+    setTotal(totals[0]);
+
+    const completedCount = userData[0].length;
+    setCompleted(completedCount);
+
+    let lateSubmissionCount = 0;
+    for (let i = 0; i < completedCount; i++) {
+      if (userData[0][i].late) {
+        lateSubmissionCount += 1;
+      }
+    }
+    setLateCount(lateSubmissionCount);
+  };
+
   useEffect(() => {
     if (
       !userData ||
@@ -25,22 +41,6 @@ function SummaryComp({ userData, settingData }) {
     ) {
       return;
     }
-
-    const calculateData = async () => {
-      const totals = await totalNum();
-      setTotal(totals[0]);
-
-      const completedCount = userData[0].length;
-      setCompleted(completedCount);
-
-      let lateSubmissionCount = 0;
-      for (let i = 0; i < completedCount; i++) {
-        if (userData[0][i].late) {
-          lateSubmissionCount += 1;
-        }
-      }
-      setLateCount(lateSubmissionCount);
-    };
 
     calculateData();
   }, [userData, settingData]);

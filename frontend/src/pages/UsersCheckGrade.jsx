@@ -7,18 +7,23 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function UsersCheckGrade() {
+  // future version: fetch data in Landing page after authorization, pass in as props then stored as local variables
   const navigate = useNavigate();
+  const [fName, setFName] = useState(null);
   const [userData, setUserData] = useState([]);
   const [settingData, setSettingData] = useState([]);
 
   const checkAuth = async () => {
-    const response = await fetch("http://localhost:3000/authorization", {
+    let response = await fetch("http://localhost:3000/authorization", {
       credentials: "include",
     });
 
     if (response.status !== 200) {
       return false;
     }
+    response = await response.json();
+    const firstName = await response.name;
+    setFName(firstName);
     return true;
   };
 
@@ -29,18 +34,21 @@ function UsersCheckGrade() {
         credentials: "include",
       });
       if (dataResponse.status === 400) {
-        // pop up and redirect
-        return "user not logged in";
+        // popup
+        console.log("User not logged in");
+        return;
       }
       if (dataResponse.status === 500) {
-        console.log(dataResponse);
+        // popup
+        console.log("server error:", dataResponse);
         return;
       }
       const data = await dataResponse.json();
       return JSON.parse(data);
     } catch (err) {
-      // create pop out: something went wrong
+      // popup
       console.log("Something went wrong: ", err);
+      return;
     }
   };
 
@@ -51,56 +59,56 @@ function UsersCheckGrade() {
         credentials: "include",
       });
       if (settingsData.status !== 200) {
-        console.log(settingsData);
+        console.log("server error: ", settingsData);
         return;
       }
       const settings = await settingsData.json();
       return JSON.parse(settings);
     } catch (err) {
+      // popup
       console.log("Something went wrong fetching settings:", err);
+      return;
+    }
+  };
+
+  const fetchAllData = async () => {
+    try {
+      const auth = await checkAuth();
+      if (!auth) {
+        console.log("user not logged in");
+        navigate("/");
+        return;
+      }
+
+      const [scoreData, settingsData] = await Promise.all([
+        fetchScoreData(),
+        fetchSettings(),
+      ]);
+
+      if (!scoreData || !settingsData) {
+        console.error("Error fetching data.");
+        navigate("/");
+        return;
+      }
+
+      setUserData(scoreData);
+      setSettingData(settingsData);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      navigate("/");
     }
   };
 
   useEffect(() => {
-    try {
-      checkAuth().then((auth) => {
-        if (!auth) {
-          console.log("navigating to /");
-          navigate("/");
-          return;
-        }
-        fetchScoreData().then((data) => {
-          if (!data) {
-            navigate("/");
-            return;
-          }
-          if (data === "user not logged in") {
-            navigate("/");
-            return;
-          }
-          setUserData(data);
-          fetchSettings().then((data) => {
-            if (!data) {
-              navigate("/");
-              return;
-            }
-            setSettingData(data);
-          });
-        });
-      });
-    } catch (err) {
-      // send pop out instead of console log
-      console.log("Error verifying authentication:", err);
-      navigate("/");
-    }
-  }, []);
+    fetchAllData();
+  }, [navigate]);
 
   return (
     <>
       <div id="checkGradeRoot">
         <Header />
         <div className="login">
-          <p className="cabin-font loginText">You are logged in as Gina</p>
+          <p className="cabin-font loginText">You are logged in as {fName}</p>
           <LogoutBtn />
         </div>
         <SummaryComp
