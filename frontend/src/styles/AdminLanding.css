@@ -1,0 +1,28 @@
+#adminRoot {
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+#adminFlexBox {
+  display: flex;
+  flex-grow: 1;
+  margin: 7% auto;
+  gap: 10%;
+}
+
+.adminBtn {
+  border: none;
+  padding: 3%;
+}
+
+.adminBtn > p {
+  display: block;
+  margin-top: 10px;
+  font-size: 2rem;
+}
+
+.adminBtn > img {
+  max-width: 30%;
+}

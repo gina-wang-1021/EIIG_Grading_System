@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UsersLanding from "./pages/UsersLanding";
 import AdminLanding from "./pages/AdminLanding";
 import UsersCheckGrade from "./pages/UsersCheckGrade";
+import AdminSetting from "./pages/AdminSetting";
+import AdminSetScores from "./pages/AdminSetScores";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
   {
     path: "/checkGrade",
     element: <UsersCheckGrade />,
+  },
+  {
+    path: "/admin/setting",
+    element: <AdminSetting />,
+  },
+  {
+    path: "/admin/scores",
+    element: <AdminSetScores />,
   },
 ]);
 

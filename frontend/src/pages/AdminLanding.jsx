@@ -1,19 +1,35 @@
-import grading from "../assets/grading.jpg";
-import settings from "../assets/setting.jpg";
+import grading from "../assets/grade.png";
+import settings from "../assets/settings.png";
 import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
+import "../styles/AdminLanding.css";
 
 function AdminLanding() {
+  const navigate = useNavigate();
+
   return (
     <>
-      <Header />
-      <button>
-        <img src={settings} alt="settings" />
-        <text>Project Settings</text>
-      </button>
-      <button>
-        <img src={grading} alt="grading" />
-        <text>Update Scores</text>
-      </button>
+      <div id="adminRoot">
+        <Header />
+        <div id="adminFlexBox">
+          <button
+            className="adminBtn cabin-font"
+            id="btn1"
+            onClick={() => navigate("/admin/scores")}
+          >
+            <img src={settings} alt="settings" />
+            <p>Project Settings</p>
+          </button>
+          <button
+            className="adminBtn cabin-font"
+            id="btn2"
+            onClick={() => navigate("/admin/setting")}
+          >
+            <img src={grading} alt="grading" />
+            <p>Update Scores</p>
+          </button>
+        </div>
+      </div>
     </>
   );
 }
