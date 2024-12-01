@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import LogoutBtn from "../components/users/LogoutBtn";
 import SummaryComp from "../components/users/SummaryComp";
 import CardList from "../components/users/CardList";
+import fetchScoreData from "../utils/fetchScoreData";
+import fetchSettings from "../utils/fetchSettings";
 import "../styles/UsersCheckGrade.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,50 +27,6 @@ function UsersCheckGrade() {
     const firstName = await response.name;
     setFName(firstName);
     return true;
-  };
-
-  const fetchScoreData = async () => {
-    try {
-      const dataResponse = await fetch("http://localhost:3000/grades", {
-        method: "GET",
-        credentials: "include",
-      });
-      if (dataResponse.status === 400) {
-        // popup
-        console.log("User not logged in");
-        return;
-      }
-      if (dataResponse.status === 500) {
-        // popup
-        console.log("server error:", dataResponse);
-        return;
-      }
-      const data = await dataResponse.json();
-      return JSON.parse(data);
-    } catch (err) {
-      // popup
-      console.log("Something went wrong: ", err);
-      return;
-    }
-  };
-
-  const fetchSettings = async () => {
-    try {
-      const settingsData = await fetch("http://localhost:3000/settings", {
-        method: "GET",
-        credentials: "include",
-      });
-      if (settingsData.status !== 200) {
-        console.log("server error: ", settingsData);
-        return;
-      }
-      const settings = await settingsData.json();
-      return JSON.parse(settings);
-    } catch (err) {
-      // popup
-      console.log("Something went wrong fetching settings:", err);
-      return;
-    }
   };
 
   const fetchAllData = async () => {

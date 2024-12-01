@@ -15,7 +15,7 @@ function AdminLanding() {
           <button
             className="adminBtn cabin-font"
             id="btn1"
-            onClick={() => navigate("/admin/scores")}
+            onClick={() => navigate("/admin/setting")}
           >
             <img src={settings} alt="settings" />
             <p>Project Settings</p>
@@ -23,7 +23,7 @@ function AdminLanding() {
           <button
             className="adminBtn cabin-font"
             id="btn2"
-            onClick={() => navigate("/admin/setting")}
+            onClick={() => navigate("/admin/scores")}
           >
             <img src={grading} alt="grading" />
             <p>Update Scores</p>

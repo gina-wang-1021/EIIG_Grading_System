@@ -1,0 +1,12 @@
+#adminBackBtn {
+  display: block;
+  margin: 1.5% auto 1.5% 1.5%;
+  border: none;
+  font-size: 1.5rem;
+  padding: 8px 50px;
+}
+
+#adminBackBtn:hover {
+  background-color: #004b83;
+  color: #ffffff;
+}

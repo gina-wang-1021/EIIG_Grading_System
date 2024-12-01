@@ -13,7 +13,9 @@
 }
 
 .adminBtn {
-  border: none;
+  display: block;
+  box-sizing: border-box;
+  border: solid 5px transparent;
   padding: 3%;
 }
 
@@ -25,4 +27,14 @@
 
 .adminBtn > img {
   max-width: 30%;
+}
+
+#btn1:hover {
+  cursor: pointer;
+  border: solid 5px #004b83;
+}
+
+#btn2:hover {
+  cursor: pointer;
+  border: solid 5px #ffde73;
 }

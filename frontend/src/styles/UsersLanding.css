@@ -79,12 +79,12 @@ form {
   position: relative;
 }
 
-input {
+.inputWrapper > input {
   border: none;
   width: 85%;
 }
 
-input:focus {
+.inputWrapper > input:focus {
   border: none;
   outline: none;
   color: #000000;

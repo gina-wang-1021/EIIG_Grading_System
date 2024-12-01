@@ -1,0 +1,142 @@
+/* Switch CSS */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #004b83;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #004b83;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* 
+Blue #004b83
+Gray #b2b2b2
+Yellow #ffde73
+
+<weight>: Use a value from 400 to 700
+<uniquifier>: Use a unique and descriptive class name
+*/
+
+/* The rest of CSS */
+.projectSetCard {
+  margin: 0px auto 1.5% auto;
+  background-color: #ffffff;
+  padding: 1.5% 3%;
+  border: solid 6px #ffde73;
+}
+
+.projectCardH1 {
+  margin: 0;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 2.25rem;
+}
+
+.projectSetCard > .flexContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+#setOkBtn {
+  font-size: 1.5rem;
+  align-self: flex-end;
+  padding: 4px 25px;
+  border: none;
+}
+
+#setOkBtn:hover {
+  background-color: #004b83;
+  color: #ffffff;
+}
+
+.setBtns {
+  width: 30%;
+}
+
+.flexSetBtn {
+  display: flex;
+  gap: 20%;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+.flexSetBtn > p {
+  margin: 0;
+  font-size: 1.5rem;
+  width: 40%;
+  text-align: end;
+}
+
+.setTotal {
+  display: flex;
+  gap: 20%;
+}
+
+.setTotal > label {
+  width: 40%;
+  font-size: 1.5rem;
+}
+
+.setTotal > div {
+  width: 40%;
+}
+
+.setTotal > div > input {
+  border: none;
+  background-color: #e2e2e2;
+  height: 100%;
+  padding: 0 0.75rem;
+}
+
+.setTotal > div > input:focus {
+  outline: none;
+}
+
+.errorMessage {
+  font-size: 1rem;
+}
