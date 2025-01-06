@@ -3,3 +3,8 @@
   background-color: #ffffff;
   overflow: hidden;
 }
+
+.cardsLoading {
+  font-size: 2rem;
+  text-align: center;
+}

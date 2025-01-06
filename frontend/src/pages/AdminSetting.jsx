@@ -16,7 +16,7 @@ function AdminSetting() {
     let cardList = [];
 
     if (!projectSetting || !sessionSetting) {
-      return <div className="cardsLoading">Loading...</div>;
+      return <div className="cardsLoading cabin-font">Loading...</div>;
     }
 
     projectSetting.map((project) => {
