@@ -70,7 +70,7 @@ function SummaryComp({ userData, settingData }) {
         )}
       </div>
       <div id="summaryAll">
-        {!completed || !total || !lateCount ? (
+        {completed === null || total === null || lateCount === null ? (
           <>
             <p className="cabin-font summaryText" id="summaryLoading">
               Loading...

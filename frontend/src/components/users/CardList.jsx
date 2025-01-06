@@ -24,6 +24,10 @@ function CardList({ userData, settingData }) {
       !sessionSet.length ||
       !total.length
     ) {
+      console.log(projectData);
+      console.log(sessionData);
+      console.log(projectSet);
+      console.log(sessionSet);
       return <div className="cabin-font loading">Loading...</div>;
     }
     const projects = total[0];
@@ -55,9 +59,11 @@ function CardList({ userData, settingData }) {
     for (let i = 0; i < sessions; i++) {
       const scoreExist =
         sessionSet[i].status === true &&
-        sessionData[sessionNum].attendance === ("excused" || "yes")
+        (sessionData[sessionNum].attendance == "excused" ||
+          sessionData[sessionNum].attendance == "yes")
           ? true
           : false;
+      console.log(scoreExist);
       finalRender.push(
         <SessionCard
           key={"ses"}

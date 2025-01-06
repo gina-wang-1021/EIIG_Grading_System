@@ -46,51 +46,49 @@ function ProjectSettingCard({ projectId, maxPoints, status }) {
     }
   };
   return (
-    <>
-      <form className="projectSetCard" onSubmit={submitForm}>
-        <h1 className="projectCardH1 cabin-font">Project {projectId}</h1>
-        <div className="flexContainer">
-          <div className="setBtns">
-            <div className="flexSetBtn">
-              <p className="cabin-font">Status</p>
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onChange={handleToggle}
-                  checked={projectStatus}
-                />
-                <span className="slider"></span>
-              </label>
-            </div>
-            <div className="setTotal">
-              <label className="cabin-font">Total Points</label>
-              <div>
-                <input
-                  type="text"
-                  value={totalPoint}
-                  className={`cabin-font ${pointError ? "error" : ""}`}
-                  onChange={(e) => {
-                    setTotalPoint(e.target.value);
-                  }}
-                  onFocus={() => {
-                    setPointError("");
-                  }}
-                />
-                {pointError && (
-                  <p className="errorMessage cabin-font">{pointError}</p>
-                )}
-              </div>
+    <form className="projectSetCard" onSubmit={submitForm}>
+      <h1 className="projectCardH1 cabin-font">Project {projectId}</h1>
+      <div className="flexContainer">
+        <div className="setBtns">
+          <div className="flexSetBtn">
+            <p className="cabin-font">Status</p>
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={handleToggle}
+                checked={projectStatus}
+              />
+              <span className="slider"></span>
+            </label>
+          </div>
+          <div className="setTotal">
+            <label className="cabin-font">Total Points</label>
+            <div>
+              <input
+                type="text"
+                value={totalPoint}
+                className={`cabin-font ${pointError ? "error" : ""}`}
+                onChange={(e) => {
+                  setTotalPoint(e.target.value);
+                }}
+                onFocus={() => {
+                  setPointError("");
+                }}
+              />
+              {pointError && (
+                <p className="errorMessage cabin-font">{pointError}</p>
+              )}
             </div>
           </div>
-          <input
-            id="setOkBtn"
-            className="cabin-font"
-            type="submit"
-            value="Update"
-          />
         </div>
-      </form>
-    </>
+        <input
+          id="setOkBtn"
+          className="cabin-font"
+          type="submit"
+          value="Update"
+        />
+      </div>
+    </form>
   );
 }
 

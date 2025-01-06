@@ -31,9 +31,13 @@ function AdminSetting() {
     });
 
     sessionSetting.map((session) => {
+      console.log(session);
       cardList.push(
-        // build session card
-        <SessionSettingCard key="ses"></SessionSettingCard>
+        <SessionSettingCard
+          key="ses"
+          sessionName={session.name}
+          status={session.status}
+        ></SessionSettingCard>
       );
     });
 

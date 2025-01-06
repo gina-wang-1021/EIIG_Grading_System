@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 
 async function connection() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://ginawang1021:GinaDatabases1001@cluster0.m43if.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    );
+    await mongoose.connect(process.env.API_KEY);
     console.log("connected to mongoDB");
   } catch (err) {
     console.error("MongoDB connection error:", err);

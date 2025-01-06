@@ -7,6 +7,9 @@ import Session from "./model/Session.js";
 import ProjectScore from "./model/ProjectScore.js";
 import SessionAttendance from "./model/SessionAttendance.js";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
