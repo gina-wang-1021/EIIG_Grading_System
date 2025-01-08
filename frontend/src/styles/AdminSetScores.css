@@ -1,0 +1,134 @@
+.formWrapperAdmin form {
+  margin: auto;
+  width: 70%;
+  border: 4px solid #ffde73;
+  padding: 3% 6%;
+  font-family: "Cabin", serif;
+}
+
+.flexRecordType {
+  display: grid;
+  grid-template-columns: 35% 40%;
+  grid-column-gap: 5%;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.flexRecordType p {
+  font-size: 1.25rem;
+  margin: 0;
+  text-align: end;
+}
+
+.projectBtnWrap > button {
+  display: block;
+  width: 49%;
+  font-family: "Cabin", serif;
+  border-radius: 0px;
+  border: none;
+}
+
+.projectBtnWrap > button.projectSelect {
+  background-color: #004b83;
+  color: white;
+}
+
+.projectBtnWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectForm,
+.sessionForm {
+  display: grid;
+  grid-template-columns: 35% 40%;
+  grid-column-gap: 5%;
+  grid-row-gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.projectForm label,
+.sessionForm label {
+  font-size: 1.25rem;
+}
+
+.projectForm > div > input,
+.sessionForm > div > input {
+  border-radius: 0px;
+  border: 1px solid black;
+  font-size: 1rem;
+  font-family: "Cabin", serif;
+  width: 100%;
+}
+
+.projectForm > div > input:focus,
+.sessionForm > div > input:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1.75px solid #004b83;
+}
+
+.projectForm input[type="checkbox"] {
+  margin: 0;
+  justify-self: start;
+}
+
+.sessionForm p {
+  margin: 0;
+  font-size: 1.25rem;
+  text-align: end;
+}
+
+.adminSesBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminSesBtn button {
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-family: "Cabin", serif;
+  width: 30%;
+}
+
+.adminSesBtn button:hover {
+  border: 1px solid #004b83;
+}
+
+.adminSesBtn > button.projectSelect {
+  background-color: #004b83;
+  border: 1px solid #004b83;
+  color: white;
+}
+
+.adminProjectBtn {
+  font-family: "Cabin", serif;
+  display: block;
+  border: none;
+  border-radius: 0;
+  margin: 25px auto 0 auto;
+  width: 50%;
+  padding: 8px 0;
+}
+
+.adminProjectBtn:hover,
+.adminProjectBtn:active {
+  background-color: #ffde73;
+}
+
+.projectForm > div > input.errAdminInput,
+.sessionForm > div > input.errAdminInput {
+  border: 1px solid #b00000;
+  color: #b00000;
+  position: relative;
+}
+
+.sessionForm > div > .errAdminMes,
+.projectForm > div > .errAdminMes {
+  position: absolute;
+  color: #b00000;
+  font-size: 12px;
+  margin: 0;
+}

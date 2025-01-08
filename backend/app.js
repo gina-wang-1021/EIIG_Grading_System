@@ -156,11 +156,11 @@ app.put("/grades", async (req, res) => {
     const member = await Member.findOne({ id: appID });
 
     if (!member) {
-      return res.status(400).send("Member doesn't exist");
+      return res.status(400).json("Member doesn't exist");
     }
     console.log("found member");
 
-    if (requireType == "Project") {
+    if (requireType == "project") {
       console.log("updating project data");
       const project = await Project.findOne({ id: req.body.projectID }).then(
         (p) => {
@@ -172,7 +172,7 @@ app.put("/grades", async (req, res) => {
       );
 
       if (!project) {
-        return res.status(400).send("Project doesn't exist");
+        return res.status(400).json("Project doesn't exist");
       }
 
       // check if score record exists
@@ -194,8 +194,8 @@ app.put("/grades", async (req, res) => {
       scoreData.score = req.body.score;
       scoreData.late = req.body.late;
       await scoreData.save();
-      res.status(200).send("successfully updated project record");
-    } else if (requireType == "Session") {
+      res.status(200).json("successfully updated project record");
+    } else if (requireType == "session") {
       console.log("updating session data");
       // check if record exists
       let scoreData = await SessionAttendance.findOne({
@@ -213,14 +213,14 @@ app.put("/grades", async (req, res) => {
       }
 
       // update attendance
-      scoreData.attendance = req.body.attendance;
+      scoreData.attendance = req.body.score;
       await scoreData.save();
-      res.status(200).send("successfully updated session record");
+      res.status(200).json("successfully updated session record");
     } else {
-      res.status(400).send("Cannot find requirement type");
+      res.status(400).json("Cannot find requirement type");
     }
   } catch (err) {
-    res.status(500).send(`Something went wrong... Error: ${err}`);
+    res.status(500).json(`Something went wrong... Error: ${err}`);
   }
 });
 
