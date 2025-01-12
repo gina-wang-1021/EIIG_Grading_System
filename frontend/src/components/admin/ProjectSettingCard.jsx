@@ -1,5 +1,4 @@
 import "../../styles/ProjectSettingCard.css";
-// import CheckPopUp from "./CheckPopUp";
 import { useState } from "react";
 
 function ProjectSettingCard({ projectId, maxPoints, status }) {
@@ -34,14 +33,14 @@ function ProjectSettingCard({ projectId, maxPoints, status }) {
       });
 
       if (response.status != 200) {
-        console.log("Server side error");
+        alert("Server side error");
         return false;
       }
-      console.log("successful update");
+      alert("successful update");
       return true;
       // based on return value create popup
     } catch (err) {
-      console.log("something went wrong...", err);
+      alert("something went wrong...", err);
       return false;
     }
   };

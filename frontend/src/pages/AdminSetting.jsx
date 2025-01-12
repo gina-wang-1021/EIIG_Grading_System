@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import BackButton from "../components/admin/BackButton";
-import SessionSettingCard from "../components/admin/sessionSettingCard";
+import SessionSettingCard from "../components/admin/SessionSettingCard";
 import ProjectSettingCard from "../components/admin/ProjectSettingCard";
 import fetchSettings from "../utils/fetchSettings";
 import "../styles/AdminSetting.css";
@@ -31,7 +31,6 @@ function AdminSetting() {
     });
 
     sessionSetting.map((session) => {
-      console.log(session);
       cardList.push(
         <SessionSettingCard
           key="ses"

@@ -1,10 +1,10 @@
 .modal {
-  font-size: 12px;
+  font-size: var(--fs-075);
 }
 .modal > .header {
   width: 100%;
   border-bottom: 1px solid gray;
-  font-size: 18px;
+  font-size: var(--fs-025);
   text-align: center;
   padding: 5px;
 }
@@ -26,7 +26,7 @@
   line-height: 20px;
   right: -10px;
   top: -10px;
-  font-size: 24px;
+  font-size: var(--fs-15);
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid #cfcece;

@@ -12,7 +12,7 @@
 }
 
 #progressText {
-  font-size: 3rem;
+  font-size: var(--fs-3);
   font-weight: 1000;
   margin: 0;
   color: #004b8e;
@@ -36,20 +36,31 @@
 }
 
 .summaryText {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   text-align: left;
   margin: 0;
 }
 
 .text1 {
-  margin-bottom: 1rem;
+  margin-bottom: var(--fs-basic);
 }
 
 .summaryComment {
   margin: 0;
   text-align: left;
+  font-size: var(--fs-basic);
 }
 
 #summaryLoading {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
+}
+
+@media (max-width: 850px) {
+  #sumCompAll {
+    padding: 4%;
+  }
+
+  #progressAll {
+    margin-right: 5%;
+  }
 }

@@ -14,10 +14,10 @@
 
 .loginText {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
 }
 
 .lastComment {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   margin: 2rem 0;
 }

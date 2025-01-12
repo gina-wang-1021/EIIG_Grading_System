@@ -7,19 +7,23 @@
   margin-bottom: 1%;
 }
 
+.sessionCard:hover {
+  background: #bfbfbf71;
+}
+
 .sessionCard > img {
-  max-width: 2rem;
+  max-width: var(--fs-2);
   margin: 0;
 }
 
 .sessionCard > p {
   display: block;
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   margin: 0;
 }
 
 .sesLock {
-  max-width: 2rem;
+  max-width: var(--fs-2);
   margin: 0;
   opacity: 0.8;
 }

@@ -8,6 +8,18 @@ Yellow #ffde73
 */
 @import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap");
 
+:root {
+  --fs-025: 0.25rem;
+  --fs-05: 0.5rem;
+  --fs-075: 0.75rem;
+  --fs-basic: 1rem;
+  --fs-125: 1.25rem;
+  --fs-15: 1.5rem;
+  --fs-175: 1.75rem;
+  --fs-2: 2rem;
+  --fs-3: 3rem;
+}
+
 *,
 *::before,
 *::after {
@@ -38,7 +50,8 @@ body {
 }
 
 .mainCard {
-  max-width: 40%;
+  width: 450px;
+  max-width: 90%;
   margin: auto;
 
   background-color: #b2b2b2;
@@ -58,7 +71,7 @@ img {
 h1 {
   margin-top: 1%;
   margin-bottom: 5%;
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   text-align: center;
 }
 
@@ -70,9 +83,9 @@ form {
   display: grid;
   grid-template-columns: 30% 65%;
   column-gap: 5%;
-  row-gap: 1rem;
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
+  row-gap: var(--fs-basic);
+  margin-bottom: var(--fs-125);
+  font-size: var(--fs-basic);
 }
 
 .inputWrapper {
@@ -95,9 +108,9 @@ label {
 }
 
 p {
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
+  margin-top: var(--fs-2);
+  margin-bottom: var(--fs-05);
+  font-size: var(--fs-075);
   text-align: center;
 }
 
@@ -105,8 +118,8 @@ p {
   display: block;
   box-sizing: border-box;
   width: 80%;
-  padding: 0.25rem;
-  font-size: 1rem;
+  padding: var(--fs-025);
+  font-size: var(--fs-basic);
   margin: auto;
 }
 
@@ -120,10 +133,51 @@ p {
   color: #b00000;
 }
 
-.errorMessage {
+.errorMessageUser {
   position: absolute;
   color: #b00000;
   margin: 0;
-  font-size: 6px;
+  font-size: 0.5rem;
   text-align: left;
+}
+
+@media (max-width: 850px) {
+  :root {
+    --fs-025: 0.06rem;
+    --fs-05: 0.125rem;
+    --fs-075: 0.25rem;
+    --fs-basic: 0.5rem;
+    --fs-125: 0.75rem;
+    --fs-15: 1rem;
+    --fs-175: 1.25rem;
+    --fs-2: 1.5rem;
+    --fs-3: 1.75rem;
+  }
+
+  .mainCard {
+    width: 100%;
+    max-width: none;
+    margin-top: 100px;
+    height: calc(100% - 100px);
+    border-radius: 70px 70px 0 0;
+  }
+
+  img {
+    margin-top: 18%;
+  }
+
+  h1 {
+    margin-top: 16px;
+    margin-bottom: 30px;
+  }
+  #fname-label {
+    font-size: var(--fs-15);
+  }
+
+  #id-label {
+    font-size: var(--fs-15);
+  }
+  #hintUser {
+    font-size: var(--fs-125);
+  }
 }

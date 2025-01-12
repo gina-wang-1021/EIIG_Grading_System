@@ -2,7 +2,7 @@
   display: block;
   margin: 1.5% auto 1.5% 1.5%;
   border: none;
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   padding: 8px 50px;
 }
 

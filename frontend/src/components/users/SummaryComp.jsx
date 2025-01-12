@@ -85,8 +85,8 @@ function SummaryComp({ userData, settingData }) {
               {lateCount} out of 2 late submissions used
             </p>
             <p className="cabin-font summaryComment">
-              (Placement into EIIG will not be guaranteed if more than 2 late
-              submissions submitted)
+              (Placement into EIIG will not be guaranteed if there are more than
+              2 late or missing submissions)
             </p>
           </>
         )}

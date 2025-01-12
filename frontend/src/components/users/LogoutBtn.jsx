@@ -10,7 +10,6 @@ function LogoutBtn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         navigate("/");
       })
       .catch((error) => console.error("Error:", error));

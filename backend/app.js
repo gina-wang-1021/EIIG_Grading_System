@@ -31,12 +31,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// get user data for testing usage
-app.get("/", async (req, res) => {
-  const userData = req.cookies.userData ? req.cookies.userData : {};
-  res.status(200).json(userData);
-});
-
 // button triggers user log in
 app.post("/", async (req, res) => {
   try {
@@ -50,7 +44,7 @@ app.post("/", async (req, res) => {
         "userData",
         { name: appName, id: appID },
         {
-          maxAge: 100000,
+          maxAge: 500000,
           httpOnly: true,
           sameSite: "Lax",
           secure: false,
@@ -162,22 +156,28 @@ app.put("/grades", async (req, res) => {
 
     if (requireType == "project") {
       console.log("updating project data");
-      const project = await Project.findOne({ id: req.body.projectID }).then(
-        (p) => {
-          if (!p) {
-            return null;
-          }
-          return p._id;
+      const project = await Project.findOne({
+        id: req.body.projectID,
+      }).then((p) => {
+        if (!p) {
+          return null;
         }
-      );
+        return p;
+      });
 
       if (!project) {
         return res.status(400).json("Project doesn't exist");
       }
 
+      if (req.body.score > project.totalPoints) {
+        return res
+          .status(406)
+          .json(`Score exceeds max score of ${project.totalPoints}`);
+      }
+
       // check if score record exists
       let scoreData = await ProjectScore.findOne({
-        $and: [{ member: member._id }, { project: project }],
+        $and: [{ member: member._id }, { project: project._id }],
       });
 
       // create new if record doesn't exist

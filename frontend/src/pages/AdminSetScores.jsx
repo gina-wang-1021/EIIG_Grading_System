@@ -13,9 +13,6 @@ function AdminSetScores() {
   const [errorEnter, setErrorEnter] = useState("");
   const [late, setLate] = useState(false);
 
-  // TODO
-  // check max score before sending
-
   const validateInput = (recordType, recordID, memberID, recordEnter) => {
     let triggered = false;
     if (recordType === "project") {
@@ -35,10 +32,8 @@ function AdminSetScores() {
       }
 
       if (triggered) {
-        console.log("falsy stuff");
         return false;
       }
-      console.log("true stuff");
       return true;
     } else {
       if (!memberID || isNaN(memberID)) {
@@ -71,14 +66,13 @@ function AdminSetScores() {
         });
 
         if (response.ok) {
-          console.log("record updated");
+          alert("record updated!");
           // create pop out
           setMemberID("");
           setRecordID("");
           setRecordEnter(recordType === "project" ? "" : "yes");
           setLate(false);
         } else if (response.status === 400) {
-          console.log(await response.json());
           if (recordType === "project") {
             setErrorID(
               "Error occurred. Either candidate doesn't exist or project doesn't exist"
@@ -88,15 +82,17 @@ function AdminSetScores() {
               "Error occurred. Either candidate doesn't exist or cannot find requirement type"
             );
           }
+        } else if (response.status === 406) {
+          setErrorEnter("Error occurred. Score exceeded max points.");
         } else if (response.status === 500) {
-          console.log(await response.json());
+          alert(await response.json());
         }
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     }
 
-    console.log("submitted");
+    alert("submitted!");
   };
 
   return (
@@ -189,8 +185,6 @@ function AdminSetScores() {
                 type="checkbox"
                 onChange={(e) => {
                   setLate(e.target.checked);
-                  console.log(e.target.checked);
-                  console.log(late);
                 }}
                 value={late}
               />

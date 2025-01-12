@@ -71,10 +71,10 @@ Yellow #ffde73
 
 .projectCardH1 {
   margin: 0;
-  margin-bottom: 1rem;
+  margin-bottom: var(--fs-basic);
   text-align: left;
   font-weight: 700;
-  font-size: 2.25rem;
+  font-size: var(--fs-2);
 }
 
 .projectSetCard > .flexContainer {
@@ -83,7 +83,7 @@ Yellow #ffde73
 }
 
 #setOkBtn {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   align-self: flex-end;
   padding: 4px 25px;
   border: none;
@@ -101,13 +101,13 @@ Yellow #ffde73
 .flexSetBtn {
   display: flex;
   gap: 20%;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--fs-05);
   align-items: center;
 }
 
 .flexSetBtn > p {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   width: 40%;
   text-align: end;
 }
@@ -119,7 +119,7 @@ Yellow #ffde73
 
 .setTotal > label {
   width: 40%;
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
 }
 
 .setTotal > div {
@@ -130,8 +130,8 @@ Yellow #ffde73
   border: none;
   background-color: #e2e2e2;
   height: 100%;
-  padding: 0 0.75rem;
-  font-size: 1.5rem;
+  padding: 0 var(--fs-075);
+  font-size: var(--fs-15);
 }
 
 .setTotal > div > input:focus {
@@ -139,5 +139,5 @@ Yellow #ffde73
 }
 
 .errorMessage {
-  font-size: 0.75rem;
+  font-size: var(--fs-075);
 }

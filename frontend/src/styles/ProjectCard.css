@@ -7,8 +7,12 @@
   margin-bottom: 1%;
 }
 
+.projectCard:hover {
+  background: #bfbfbf71;
+}
+
 .projectCard > p {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   margin: 0;
 }
 
@@ -17,7 +21,7 @@
 }
 
 .projectLock {
-  max-width: 2rem;
+  max-width: var(--fs-2);
   margin: 0;
   opacity: 0.8;
 }

@@ -5,14 +5,14 @@ export default async function fetchSettings() {
       credentials: "include",
     });
     if (settingsData.status !== 200) {
-      console.log("server error: ", settingsData);
+      alert("server error: ", settingsData);
       return;
     }
     const settings = await settingsData.json();
     return JSON.parse(settings);
   } catch (err) {
     // popup
-    console.log("Something went wrong fetching settings:", err);
+    alert("Something went wrong fetching settings:", err);
     return;
   }
 }

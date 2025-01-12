@@ -10,12 +10,12 @@
   display: grid;
   grid-template-columns: 35% 40%;
   grid-column-gap: 5%;
-  margin-bottom: 16px;
+  margin-bottom: var(--fs-basic);
   justify-content: center;
 }
 
 .flexRecordType p {
-  font-size: 1.25rem;
+  font-size: var(--fs-125);
   margin: 0;
   text-align: end;
 }
@@ -43,14 +43,14 @@
   display: grid;
   grid-template-columns: 35% 40%;
   grid-column-gap: 5%;
-  grid-row-gap: 16px;
+  grid-row-gap: var(--fs-basic);
   justify-content: center;
   align-items: center;
 }
 
 .projectForm label,
 .sessionForm label {
-  font-size: 1.25rem;
+  font-size: var(--fs-125);
 }
 
 .projectForm > div > input,
@@ -66,7 +66,7 @@
 .sessionForm > div > input:focus {
   outline: none;
   box-shadow: none;
-  border: 1.75px solid #004b83;
+  border: var(--fs-175) solid #004b83;
 }
 
 .projectForm input[type="checkbox"] {
@@ -76,7 +76,7 @@
 
 .sessionForm p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: var(--fs-125);
   text-align: end;
 }
 
@@ -129,6 +129,6 @@
 .projectForm > div > .errAdminMes {
   position: absolute;
   color: #b00000;
-  font-size: 12px;
+  font-size: var(--fs-075);
   margin: 0;
 }

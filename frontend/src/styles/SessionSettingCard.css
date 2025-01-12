@@ -6,7 +6,7 @@
 }
 
 .sessionSetBtn > p {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   margin: 0;
   width: 40%;
   text-align: end;

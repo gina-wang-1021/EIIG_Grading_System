@@ -6,19 +6,19 @@ export default async function fetchScoreData() {
     });
     if (dataResponse.status === 400) {
       // popup
-      console.log("User not logged in");
+      alert("User not logged in");
       return;
     }
     if (dataResponse.status === 500) {
       // popup
-      console.log("server error:", dataResponse);
+      alert("server error:", dataResponse);
       return;
     }
     const data = await dataResponse.json();
     return JSON.parse(data);
   } catch (err) {
     // popup
-    console.log("Something went wrong: ", err);
+    alert("Something went wrong: ", err);
     return;
   }
 }

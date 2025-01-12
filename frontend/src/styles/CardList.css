@@ -5,11 +5,11 @@
 }
 
 #allCards > p {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   margin-bottom: 0;
 }
 
 .loading {
-  font-size: 1.5rem;
+  font-size: var(--fs-15);
   text-align: center;
 }

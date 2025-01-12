@@ -2,5 +2,6 @@
   border: none;
   border-radius: 0%;
   padding: 5px 10px;
-  font-size: 1.5rem;
+  font-size: var(--vs-15);
+  cursor: pointer;
 }

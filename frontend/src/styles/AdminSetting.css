@@ -5,6 +5,6 @@
 }
 
 .cardsLoading {
-  font-size: 2rem;
+  font-size: var(--fs-2);
   text-align: center;
 }

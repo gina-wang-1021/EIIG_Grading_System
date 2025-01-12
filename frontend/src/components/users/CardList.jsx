@@ -24,10 +24,6 @@ function CardList({ userData, settingData }) {
       !sessionSet.length ||
       !total.length
     ) {
-      console.log(projectData);
-      console.log(sessionData);
-      console.log(projectSet);
-      console.log(sessionSet);
       return <div className="cabin-font loading">Loading...</div>;
     }
     const projects = total[0];
@@ -63,7 +59,6 @@ function CardList({ userData, settingData }) {
           sessionData[sessionNum].attendance == "yes")
           ? true
           : false;
-      console.log(scoreExist);
       finalRender.push(
         <SessionCard
           key={"ses"}
@@ -100,7 +95,7 @@ function CardList({ userData, settingData }) {
         const totals = await totalNum();
         setTotal(totals);
       } catch (err) {
-        console.log("Something went wrong: ", err);
+        alert("Something went wrong: ", err);
       }
     };
 
@@ -113,7 +108,7 @@ function CardList({ userData, settingData }) {
         setProjectSet(settingData[0]);
         setSessionSet(settingData[1]);
       } catch (err) {
-        console.log("Something went wrong: ".err);
+        alert("Something went wrong: ".err);
       }
     };
     fetchData();

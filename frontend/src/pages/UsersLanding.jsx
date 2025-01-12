@@ -13,13 +13,11 @@ function UsersLanding() {
 
   const validateInput = (nameValue, idValue) => {
     if (!/^[A-Za-z]+$/.test(nameValue)) {
-      console.log("setting error name");
       setErrorName("First name is invalid. Input can only take letters");
       return false;
     }
 
     if (!/^[0-9]+$/.test(idValue)) {
-      console.log("setting error id");
       setErrorId("ID is invalid. Input can only take numbers");
       return false;
     }
@@ -33,7 +31,6 @@ function UsersLanding() {
     const nameValue = event.target.first_name.value;
     const idValue = event.target.id.value;
     if (validateInput(nameValue, idValue)) {
-      console.log("data valid");
       try {
         const response = await fetch("http://localhost:3000/", {
           method: "POST",
@@ -47,16 +44,15 @@ function UsersLanding() {
         if (response.ok) {
           navigate("/checkGrade");
         } else if (response.status === 400 || 500) {
-          console.log(await response.json());
           setErrorValid("User not found. Either First Name or ID is incorrect");
           setNumValue("");
         }
       } catch (error) {
-        console.log(error);
+        alert(error);
         // popup
       }
     } else {
-      console.log("data was invalid");
+      alert("data was invalid");
     }
   };
 
@@ -87,7 +83,7 @@ function UsersLanding() {
                     if (errorName) setErrorName("");
                   }}
                 />
-                {errorName && <p className="errorMessage">{errorName}</p>}
+                {errorName && <p className="errorMessageUser">{errorName}</p>}
               </div>
               <label htmlFor="id" id="id-label">
                 EIIG ID:
@@ -109,11 +105,11 @@ function UsersLanding() {
                     if (errorValid) setErrorValid("");
                   }}
                 />
-                {errorId && <p className="errorMessage">{errorId}</p>}
-                {errorValid && <p className="errorMessage">{errorValid}</p>}
+                {errorId && <p className="errorMessageUser">{errorId}</p>}
+                {errorValid && <p className="errorMessageUser">{errorValid}</p>}
               </div>
             </div>
-            <p>
+            <p id="hintUser">
               If you don’t remember your EIIG ID, <br /> please contact
               Catherine via Slack
             </p>

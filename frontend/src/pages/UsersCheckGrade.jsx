@@ -33,7 +33,6 @@ function UsersCheckGrade() {
     try {
       const auth = await checkAuth();
       if (!auth) {
-        console.log("user not logged in");
         navigate("/");
         return;
       }
