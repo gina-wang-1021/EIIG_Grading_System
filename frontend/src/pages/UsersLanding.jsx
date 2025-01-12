@@ -11,6 +11,8 @@ function UsersLanding() {
   const [errorValid, setErrorValid] = useState("");
   const navigate = useNavigate();
 
+  const backendUrl = process.env.BACKEND_URL;
+
   const validateInput = (nameValue, idValue) => {
     if (!/^[A-Za-z]+$/.test(nameValue)) {
       setErrorName("First name is invalid. Input can only take letters");
@@ -32,7 +34,7 @@ function UsersLanding() {
     const idValue = event.target.id.value;
     if (validateInput(nameValue, idValue)) {
       try {
-        const response = await fetch("http://localhost:3000/", {
+        const response = await fetch(`${backendUrl}:3000/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,6 +1,8 @@
 export default async function fetchScoreData() {
+  const backendUrl = process.env.BACKEND_URL;
+
   try {
-    const dataResponse = await fetch("http://localhost:3000/grades", {
+    const dataResponse = await fetch(`${backendUrl}/grades`, {
       method: "GET",
       credentials: "include",
     });

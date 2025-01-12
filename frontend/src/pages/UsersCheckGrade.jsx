@@ -15,8 +15,10 @@ function UsersCheckGrade() {
   const [userData, setUserData] = useState([]);
   const [settingData, setSettingData] = useState([]);
 
+  const backendUrl = process.env.BACKEND_URL;
+
   const checkAuth = async () => {
-    let response = await fetch("http://localhost:3000/authorization", {
+    let response = await fetch(`${backendUrl}/authorization`, {
       credentials: "include",
     });
 

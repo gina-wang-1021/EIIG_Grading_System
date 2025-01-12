@@ -13,6 +13,8 @@ function AdminSetScores() {
   const [errorEnter, setErrorEnter] = useState("");
   const [late, setLate] = useState(false);
 
+  const backendUrl = process.env.BACKEND_URL;
+
   const validateInput = (recordType, recordID, memberID, recordEnter) => {
     let triggered = false;
     if (recordType === "project") {
@@ -51,7 +53,7 @@ function AdminSetScores() {
     if (validateInput(recordType, recordID, memberID, recordEnter)) {
       // check if score is under max score for the project
       try {
-        const response = await fetch("http://localhost:3000/grades", {
+        const response = await fetch(`${backendUrl}/grades`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

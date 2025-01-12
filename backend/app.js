@@ -12,10 +12,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const corsOptions = {
-  origin: "http://localhost:5173", // allow only this origin
+  origin: process.env.FRONTEND_URL, // allow only this origin
   credentials: true,
 };
 

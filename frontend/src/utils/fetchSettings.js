@@ -1,6 +1,8 @@
 export default async function fetchSettings() {
+  const backendUrl = process.env.BACKEND_URL;
+
   try {
-    const settingsData = await fetch("http://localhost:3000/settings", {
+    const settingsData = await fetch(`${backendUrl}/settings`, {
       method: "GET",
       credentials: "include",
     });
