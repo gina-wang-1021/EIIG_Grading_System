@@ -14,6 +14,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
+console.log("FRONTEND_URL is:", process.env.FRONTEND_URL);
+
 const corsOptions = {
   origin: process.env.FRONTEND_URL, // allow only this origin
   credentials: true,

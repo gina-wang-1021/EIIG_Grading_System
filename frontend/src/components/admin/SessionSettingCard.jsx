@@ -1,4 +1,4 @@
-import "../../styles/sessionSettingCard.css";
+import "../../styles/SessionSettingCard.css";
 import { useState } from "react";
 
 function SessionSettingCard({ sessionName, status }) {
