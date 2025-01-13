@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 function LogoutBtn() {
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const logout = async () => {
-    await fetch("http://localhost:3000/grades/logout", {
+    await fetch(`${backendUrl}/grades/logout`, {
       method: "GET",
       credentials: "include",
     })

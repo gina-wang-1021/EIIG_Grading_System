@@ -6,6 +6,8 @@ function ProjectSettingCard({ projectId, maxPoints, status }) {
   const [projectStatus, setProjectStatus] = useState(status);
   const [pointError, setPointError] = useState("");
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleToggle = () => {
     setProjectStatus(!projectStatus);
   };
@@ -20,7 +22,7 @@ function ProjectSettingCard({ projectId, maxPoints, status }) {
 
     try {
       // submit data
-      const response = await fetch("http://localhost:3000/projects", {
+      const response = await fetch(`${backendUrl}/projects`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

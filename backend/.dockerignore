@@ -1,0 +1,8 @@
+# flyctl launch added from .gitignore
+**/initiateAttend.js
+**/initiateItem.js
+**/initiateMember.js
+**/initiateScores.js
+**/.env
+**/node_modules
+fly.toml

@@ -13,7 +13,7 @@ function AdminSetScores() {
   const [errorEnter, setErrorEnter] = useState("");
   const [late, setLate] = useState(false);
 
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const validateInput = (recordType, recordID, memberID, recordEnter) => {
     let triggered = false;

@@ -11,7 +11,7 @@ function UsersLanding() {
   const [errorValid, setErrorValid] = useState("");
   const navigate = useNavigate();
 
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const validateInput = (nameValue, idValue) => {
     if (!/^[A-Za-z]+$/.test(nameValue)) {
@@ -34,7 +34,7 @@ function UsersLanding() {
     const idValue = event.target.id.value;
     if (validateInput(nameValue, idValue)) {
       try {
-        const response = await fetch(`${backendUrl}:3000/`, {
+        const response = await fetch(`${backendUrl}/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -53,8 +53,6 @@ function UsersLanding() {
         alert(error);
         // popup
       }
-    } else {
-      alert("data was invalid");
     }
   };
 

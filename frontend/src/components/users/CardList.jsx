@@ -10,6 +10,8 @@ function CardList({ userData, settingData }) {
   const [sessionSet, setSessionSet] = useState([]);
   const [total, setTotal] = useState([]);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const renderCards = (
     projectData,
     sessionData,
@@ -74,7 +76,7 @@ function CardList({ userData, settingData }) {
   };
 
   const totalNum = async () => {
-    let data = await fetch("http://localhost:3000/grades/macro", {
+    let data = await fetch(`${backendUrl}/grades/macro`, {
       method: "GET",
       credentials: "include",
     });

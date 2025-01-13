@@ -4,6 +4,8 @@ import { useState } from "react";
 function SessionSettingCard({ sessionName, status }) {
   const [sessionOpen, setSessionOpen] = useState(status);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleToggle = () => {
     setSessionOpen(!sessionOpen);
   };
@@ -13,7 +15,7 @@ function SessionSettingCard({ sessionName, status }) {
 
     try {
       // submit data
-      const response = await fetch("http://localhost:3000/sessions", {
+      const response = await fetch(`${backendUrl}/sessions`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

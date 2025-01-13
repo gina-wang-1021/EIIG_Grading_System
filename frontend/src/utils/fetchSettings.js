@@ -1,5 +1,5 @@
 export default async function fetchSettings() {
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   try {
     const settingsData = await fetch(`${backendUrl}/settings`, {

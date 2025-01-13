@@ -1,5 +1,5 @@
 export default async function fetchScoreData() {
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   try {
     const dataResponse = await fetch(`${backendUrl}/grades`, {

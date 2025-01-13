@@ -7,8 +7,10 @@ function SummaryComp({ userData, settingData }) {
   const [lateCount, setLateCount] = useState(null);
   const [ratio, setRatio] = useState(null);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const totalNum = async () => {
-    let data = await fetch("http://localhost:3000/grades/macro", {
+    let data = await fetch(`${backendUrl}/grades/macro`, {
       method: "GET",
       credentials: "include",
     });
